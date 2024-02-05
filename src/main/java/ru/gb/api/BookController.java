@@ -1,11 +1,13 @@
 package ru.gb.api;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.model.Book;
+import ru.gb.repository.BookRepository;
 import ru.gb.service.BookService;
 
 import java.util.List;
@@ -16,8 +18,14 @@ import java.util.NoSuchElementException;
 @RequestMapping("/book")
 public class BookController {
 
+    private final BookRepository bookRepository;
+
     @Autowired
     private BookService bookService;
+
+    public BookController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     // GET  /book - получить список всех книг
     @GetMapping()
@@ -67,5 +75,14 @@ public class BookController {
             return ResponseEntity.unprocessableEntity().build();
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(book);
+    }
+
+    @PostConstruct
+    public void generateData() {
+        bookRepository.save(new Book("Война и мир"));
+        bookRepository.save(new Book("Мертвые души"));
+        bookRepository.save(new Book("Чистый код"));
+        bookRepository.save(new Book("Зов Ктулху"));
+        bookRepository.save(new Book("Атлант расправил плечи"));
     }
 }

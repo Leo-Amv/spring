@@ -1,11 +1,13 @@
 package ru.gb.api;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.model.Issue;
+import ru.gb.repository.IssueRepository;
 import ru.gb.service.IssueService;
 
 import java.util.List;
@@ -16,8 +18,14 @@ import java.util.NoSuchElementException;
 @RequestMapping("/issue")
 public class IssueController {
 
+    private final IssueRepository issueRepository;
+
     @Autowired
     private IssueService service;
+
+    public IssueController(IssueRepository issueRepository) {
+        this.issueRepository = issueRepository;
+    }
 
     @PostMapping
     public ResponseEntity<Issue> issueBook(@RequestBody IssueRequest request) {
@@ -70,5 +78,19 @@ public class IssueController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(issue);
 
+    }
+
+    @PostConstruct
+    public void generateData() {
+        issueRepository.save(new Issue(1, 1));
+        issueRepository.save(new Issue(3, 1));
+        issueRepository.save(new Issue(2, 2));
+        issueRepository.save(new Issue(4, 2));
+        issueRepository.save(new Issue(5, 3));
+        issueRepository.save(new Issue(3, 3));
+        issueRepository.save(new Issue(4, 4));
+        issueRepository.save(new Issue(2, 4));
+        issueRepository.save(new Issue(3, 5));
+        issueRepository.save(new Issue(1, 5));
     }
 }

@@ -16,32 +16,29 @@ public class ReaderService {
     private final ReaderRepository readerRepository;
 
     public List<Reader> showAllReaders() {
-        return readerRepository.getAll();
+        return readerRepository.findAll();
     }
 
     public Reader addNewReader(ReaderRequest request) {
-        if (readerRepository.getReaderByName(request.getName()) != null) {
+        if (readerRepository.findReaderByName(request.getName()) != null) {
             throw new IllegalArgumentException("Данный читатель уже существует");
         }
         Reader reader = new Reader(request.getName());
-        readerRepository.addReader(reader);
+        readerRepository.save(reader);
         return reader;
     }
 
     public Reader showReaderInfo(long id) {
-        Reader reader = readerRepository.getReaderById(id);
-        if (reader == null) {
-            throw new NoSuchElementException("Не найден читатель с id: \"" + id + "\"");
-        }
-        return reader;
+        return readerRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Не найден читатель с id: \"" + id + "\""));
     }
 
     public Reader deleteReader(long id) {
-        Reader reader = readerRepository.getReaderById(id);
+        Reader reader = showReaderInfo(id);
         if (reader == null) {
             throw new NoSuchElementException("Не найден читатель с id: \"" + id + "\"");
         }
-        readerRepository.deleteReader(reader);
+        readerRepository.deleteById(id);
         return reader;
     }
 }

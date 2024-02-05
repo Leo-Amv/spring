@@ -17,7 +17,6 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class IssueService {
 
-    // спринг это все заинжектит
     private final BookRepository bookRepository;
     private final ReaderRepository readerRepository;
     private final IssueRepository issueRepository;
@@ -26,39 +25,43 @@ public class IssueService {
     private long booksLimit;
 
     public Issue issue(IssueRequest request) {
-        if (bookRepository.getBookById(request.getBookId()) == null) {
-            throw new NoSuchElementException("Не найдена книга с идентификатором \"" + request.getBookId() + "\"");
-        }
-        if (readerRepository.getReaderById(request.getReaderId()) == null) {
-            throw new NoSuchElementException("Не найден читатель с идентификатором \"" + request.getReaderId() + "\"");
-        }
-        // проверить, что у читателя нет книг на руках (или его лимит не превышает в Х книг)
-        long readerBooksAmount = issueRepository.showIssueList().stream()
-                .filter(it -> it.getReaderId() == request.getReaderId())
-                .count()+1;
-        if (readerBooksAmount > booksLimit) {
-            throw new RuntimeException("Максимально разрешенное количество книг на руках у читателя с id: \"" + request.getReaderId() + "\"");
-        }
+        long bookId = request.getBookId();
+        long readerId = request.getReaderId();
+        bookRepository.findById(bookId)
+                .orElseThrow(() -> new NoSuchElementException("Не найдена книга с идентификатором \"" + bookId + "\""));
+        readerRepository.findById(readerId)
+                .orElseThrow(() -> new NoSuchElementException("Не найден читатель с идентификатором \"" + readerId + "\""));
+
+        // проверка, что лимит читателя не превышает Х книг
+        long readerIssuedBooksAmount = issueRepository.findAll().stream()
+                .filter(it -> it.getReaderId() == readerId)
+                .filter(it -> it.getIssued_at() != null)
+                .count();
+        long readerReturnedBooksAmount = issueRepository.findAll().stream()
+                .filter(it -> it.getReaderId() == readerId)
+                .filter(it -> it.getReturned_at() != null)
+                .count();
 
         Issue issue = new Issue(request.getBookId(), request.getReaderId());
-        issueRepository.save(issue);
+        if (readerIssuedBooksAmount - readerReturnedBooksAmount < booksLimit) {
+            issueRepository.save(issue);
+        } else {
+            issueRepository.delete(issue);
+            Issue.sequence--;
+            throw new RuntimeException("Максимально разрешенное количество книг на руках у читателя с id: \"" + readerId + "\"");
+        }
         return issue;
     }
 
     public Issue showIssueInfo(long id) {
-        Issue issue = issueRepository.getIssueById(id);
-        if (issue == null) {
-            throw  new NoSuchElementException("Не найдена выдача книг с id: \"" + id + "\"");
-        }
-        return issue;
+        return issueRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Не найдена выдача книг с id: \"" + id + "\""));
     }
 
     public List<Issue> getAllIssuesByReader(long id) {
-        if (readerRepository.getReaderById(id) == null) {
-            throw  new NoSuchElementException("Не найден читатель с id: \"" + id + "\"");
-        }
-
-        List<Issue> allIssuesList = issueRepository.showIssueList().stream()
+        readerRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Не найден читатель с id: \"" + id + "\""));
+        List<Issue> allIssuesList = issueRepository.findAll().stream()
                 .filter(it -> it.getReaderId() == id)
                 .toList();
         if (allIssuesList.isEmpty()) {
@@ -68,25 +71,15 @@ public class IssueService {
     }
 
     public Issue returnBook(long id) {
-        Issue issue = issueRepository.getIssueById(id);
+        Issue issue = showIssueInfo(id);
         if (issue == null) {
             throw new NoSuchElementException("Не найдена выдача id: \"" + id + "\"");
         }
         issue.setReturned_at(LocalDateTime.now());
-        issueRepository.checkIssueStatus(issue);
-        deleteIssue(id);
-        return issue;
-    }
-
-    public void deleteIssue(long id) {
-        Issue issue = issueRepository.getIssueById(id);
-        if (issue == null) {
-            throw new NoSuchElementException("Не найдена выдача id: \"" + id + "\"");
-        }
-        issueRepository.deleteIssue(issue);
+        return issueRepository.save(issue);
     }
 
     public List<Issue> showAllIssues() {
-        return issueRepository.showIssueList();
+        return issueRepository.findAll();
     }
 }

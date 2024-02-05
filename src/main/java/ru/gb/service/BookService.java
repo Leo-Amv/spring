@@ -16,33 +16,30 @@ public class BookService {
     private final BookRepository bookRepository;
 
     public List<Book> showAllBooks() {
-        return bookRepository.getAll();
+        return bookRepository.findAll();
     }
 
     public Book addNewBook(BookRequest request) {
         // TODO: необходимо продумать момент с дублирующимися книгами, добавить counter для учёта количества экземпляров
-        if (bookRepository.getBookByName(request.getName()) != null) {
+        if (bookRepository.findBookByName(request.getName()) != null) {
             throw new IllegalArgumentException("Экземпляр данной книги уже есть");
         }
         Book book = new Book(request.getName());
-        bookRepository.addBook(book);
+        bookRepository.save(book);
         return book;
     }
 
     public Book showBookInfo(long id) {
-        Book book = bookRepository.getBookById(id);
-        if (book == null) {
-            throw new NoSuchElementException("Книга с id: " + id + " не найдена");
-        }
-        return book;
+        return bookRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Книга с id: " + id + " не найдена"));
     }
 
     public Book deleteBook(long id) {
-        Book book = bookRepository.getBookById(id);
+        Book book = showBookInfo(id);
         if (book == null) {
             throw new NoSuchElementException("Книга с id: " + id + " не найдена");
         }
-        bookRepository.deleteBook(book);
+        bookRepository.deleteById(id);
         return book;
     }
 }

@@ -4,28 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2110e475-1248-4b48-a93f-1487a17b6f1e" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/api/BookController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/api/BookRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/api/IssueController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/api/IssueRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/api/ReaderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/api/ReaderRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/model/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/model/Issue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/model/Reader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/repository/BookRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/repository/IssueRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/repository/ReaderRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/service/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/Application.java" afterDir="false" />
+    <list default="true" id="2110e475-1248-4b48-a93f-1487a17b6f1e" name="Changes" comment="complete">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/api/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/api/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/api/IssueController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/api/IssueController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/api/ReaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/api/ReaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/model/Issue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/model/Issue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/model/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/model/Reader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/repository/BookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/repository/IssueRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/repository/IssueRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/repository/ReaderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/repository/ReaderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/service/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/service/IssueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/service/IssueService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/service/ReaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/service/ReaderService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +51,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -68,9 +63,19 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "43fa049a0b1a4dc2b287594735bea688",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="spring3" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.gb.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -79,7 +84,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1706546325906</updated>
-      <workItem from="1706546327493" duration="969000" />
+      <workItem from="1706546327493" duration="1928000" />
+      <workItem from="1707150971751" duration="618000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1706546362297</created>
@@ -88,7 +94,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706546362297</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="complete">
+      <created>1706547443803</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706547443803</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -96,6 +109,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="complete" />
   </component>
 </project>

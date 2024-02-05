@@ -1,5 +1,6 @@
 package ru.gb.api;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.model.Issue;
 import ru.gb.model.Reader;
+import ru.gb.repository.ReaderRepository;
 import ru.gb.service.IssueService;
 import ru.gb.service.ReaderService;
 
@@ -18,12 +20,15 @@ import java.util.NoSuchElementException;
 @RequestMapping("/reader")
 public class ReaderController {
 
+    private final ReaderRepository readerRepository;
+
     @Autowired
     private ReaderService readerService;
+    @Autowired
     private IssueService issueService;
 
-    public ReaderController(IssueService issueService) {
-        this.issueService = issueService;
+    public ReaderController(ReaderRepository readerRepository) {
+        this.readerRepository = readerRepository;
     }
 
     // GET  /reader - получить список всех читателей
@@ -87,5 +92,14 @@ public class ReaderController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.status(HttpStatus.OK).body(readersIssues);
+    }
+
+    @PostConstruct
+    public void generateData() {
+        readerRepository.save(new Reader("Читатель1"));
+        readerRepository.save(new Reader("Читатель2"));
+        readerRepository.save(new Reader("Читатель3"));
+        readerRepository.save(new Reader("Читатель4"));
+        readerRepository.save(new Reader("Читатель5"));
     }
 }
