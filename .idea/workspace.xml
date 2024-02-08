@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2110e475-1248-4b48-a93f-1487a17b6f1e" name="Changes" comment="complete">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/TestDataGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/gb/api/UiController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/books.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/booksByReader.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/issues.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/readers.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/api/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/api/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/api/IssueController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/api/IssueController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/api/ReaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/api/ReaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/model/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/model/Issue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/model/Issue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/gb/model/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/gb/model/Reader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +46,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -61,6 +59,9 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "spring.configuration.checksum": "2a2d595e6ed9a0b24f027f2b63b134d6",
     "vue.rearranger.settings.migration": "true"
   }
@@ -84,7 +85,8 @@
       <updated>1706546325906</updated>
       <workItem from="1706546327493" duration="1928000" />
       <workItem from="1707150971751" duration="924000" />
-      <workItem from="1707408999438" duration="2234000" />
+      <workItem from="1707408999438" duration="2300000" />
+      <workItem from="1707411400278" duration="298000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1706546362297</created>
@@ -107,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707151790813</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="complete">
+      <created>1707411285248</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1707411285248</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
