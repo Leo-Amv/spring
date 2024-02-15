@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.gb.aspect.Timer;
 import ru.gb.model.Book;
 import ru.gb.service.BookService;
 
@@ -23,6 +24,7 @@ public class BookController {
     private BookService bookService;
 
     // GET  /book
+    @Timer
     @GetMapping()
     @Operation(summary = "get all books", description = "Загружает список книг, внесённых в систему")
     public ResponseEntity<List<Book>> getAllBooks() {
@@ -32,6 +34,7 @@ public class BookController {
     }
 
     //  GET /book/{id}
+    @Timer
     @GetMapping("/{id}")
     @Operation(summary = "get info about book", description = "Загружает информацию о запрашиваемой книге")
     public ResponseEntity<Book> getBookInfo(@PathVariable long id) {

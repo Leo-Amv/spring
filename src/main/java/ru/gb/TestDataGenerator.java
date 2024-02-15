@@ -5,9 +5,11 @@ import org.springframework.stereotype.Component;
 import ru.gb.model.Book;
 import ru.gb.model.Issue;
 import ru.gb.model.Reader;
+import ru.gb.model.User;
 import ru.gb.repository.BookRepository;
 import ru.gb.repository.IssueRepository;
 import ru.gb.repository.ReaderRepository;
+import ru.gb.repository.UserRepository;
 
 @Component
 public class TestDataGenerator {
@@ -15,11 +17,15 @@ public class TestDataGenerator {
     private final BookRepository bookRepository;
     private final IssueRepository issueRepository;
     private final ReaderRepository readerRepository;
+    private final UserRepository userRepository;
 
-    public TestDataGenerator(BookRepository bookRepository, IssueRepository issueRepository, ReaderRepository readerRepository) {
+    static long id = 1L;
+
+    public TestDataGenerator(BookRepository bookRepository, IssueRepository issueRepository, ReaderRepository readerRepository, UserRepository userRepository) {
         this.bookRepository = bookRepository;
         this.issueRepository = issueRepository;
         this.readerRepository = readerRepository;
+        this.userRepository = userRepository;
     }
 
     @PostConstruct
@@ -44,5 +50,21 @@ public class TestDataGenerator {
         issueRepository.save(new Issue(2, 4));
         issueRepository.save(new Issue(3, 5));
         issueRepository.save(new Issue(1, 5));
+    }
+
+    @PostConstruct
+    public void generateUsers() {
+        saveUser(userRepository, "admin");
+        saveUser(userRepository, "reader");
+        saveUser(userRepository, "auth");
+    }
+
+    public void saveUser(UserRepository userRepository, String login) {
+        User user = new User();
+        user.setId(id++);
+        user.setLogin(login);
+        user.setPassword(login);
+        user.setRole(login);
+        userRepository.save(user);
     }
 }
